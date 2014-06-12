@@ -120,13 +120,6 @@ apt-get clean
 EOF
 }
 
-# Made redundant by firmware debs
-configure_udev() {
-  onvm_chroot sh -e - <<EOF
-  printf 'SUBSYSTEM=="vchiq", GROUP="video", MODE="0660"\n' > /etc/udev/rules.d/10-local-rpi.rules
-EOF
-}
-
 cd $WORKDIR
 dotask branch_image ../$OUTDIR/stage0.$IMGFORMAT $CURIMG
 dotask download_if_necessary http://asbradbury.org/tmp/raspi/simple-root-filesystem-armv6l.tar.bz2
@@ -141,6 +134,5 @@ dotask replace_init_sh
 dotask mksquashfs qemu_rootfs qemu_rootfs.sqf -noappend -all-root
 dotask run_qemu $CURIMG
 dotask do_second_stage_debootstrap
-#dotask configure_udev
 dotask shutdown_qemu
 dotask finish_image
