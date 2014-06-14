@@ -20,6 +20,8 @@ ROOT_DEV="$NBD_DEV"p2
 IMGFORMAT=qed
 SDSIZE=750M
 
+TIMEZONE=Europe/London
+
 # Changing these isn't currently supported
 WORKDIR=work
 OUTDIR=out
