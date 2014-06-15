@@ -117,6 +117,7 @@ printf "nameserver 8.8.8.8\n" > /etc/resolv.conf
 #chmod +x raspi-config
 EOF
   shutdown_qemu
+  sudo -v
   attach_image_to_nbd temp.$IMGFORMAT /dev/nbd0
   sudo zerofree -v /dev/nbd0p2
   mkdir -p rootfs boot
