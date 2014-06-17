@@ -99,8 +99,8 @@ EOF
 }
 
 install_packages() {
-  # we may want to break out DEBIAN_FRONTEND=noninteractive
   ssh_in_to_qemu chroot /mnt sh -l -ex - <<\EOF
+export DEBIAN_FRONTEND=noninteractive
 apt-get update
 # install some utils
 apt-get install -y ssh locales less fbset sudo psmisc strace module-init-tools ifplugd ed ncdu
@@ -298,6 +298,7 @@ EOF
 # We use a swap file rather than a swap partition for greater flexibility
 setup_swap() {
   onvm_chroot sh -l -e - <<EOF
+export DEBIAN_FRONTEND=noninteractive
 apt-get -y install dphys-swapfile
 echo "CONF_SWAPSIZE=100" > /etc/dphys-swapfile
 EOF
@@ -352,6 +353,7 @@ EOF
 
 install_memcpy_replacement() {
   onvm_chroot sh -l -e <<\EOF
+export DEBIAN_FRONTEND=noninteractive
 apt-get install -y raspi-copies-and-fills
 mv /etc/ld.so.preload /etc/ld.so.preload.disable
 EOF
