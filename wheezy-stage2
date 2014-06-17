@@ -167,8 +167,11 @@ EOF1
 
 configure_hostname() {
   onvm_chroot sh -l -e - <<EOF
-echo raspberrypi > /etc/hostname
-printf "127.0.1.1\traspberrypi\n" >> /etc/hosts
+echo localhost > /etc/hostname
+
+# Necessary to allow hostname to be set from dhcp every time.
+# http://blog.schlomo.schapiro.org/2013/11/setting-hostname-from-dhcp-in-debian.html
+printf "unset old_host_name\n" > /etc/dhcp/dhclient-enter-hooks.d/unset_old_hostname
 EOF
 }
 
