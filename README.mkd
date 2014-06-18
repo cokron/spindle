@@ -30,9 +30,6 @@ Aboriginal Linux. Setup dropbear.
 fstab, network interfaces, hostname). The resulting image is bootable.
 * `wheezy-stage3`: Install and configure a few useful packages (such as 
 ifplugd, sudo).
-* `wheezy-stage4-lxde`: Set up the lxde desktop.
-* `wheezy-stage4-lxde-edu`: Install MIT Scratch, Python development tools and 
-other packages.
 
 ## Getting started
 The following describes how to start building SD card images using spindle.  
@@ -49,13 +46,9 @@ Debian and Ubuntu versions right now.
     ./wheezy-stage1
     ./wheezy-stage2
     ./wheezy-stage3
-    ./wheezy-stage4-lxde
-    ./helper export_image_for_release out/stage4-lxde.qed stage4-lxde.img
+    ./helper export_image_for_release out/stage3.qed out/stage3.img
 
-Now you can write stage4-lxde.img to SD card.
-
-Take a look at `wheezy-stage4-lxde` to see how to add your own stage if you 
-want further customisation.
+Now you can write stage3.img to SD card.
 
 ## HACKING
 If you want to contribute, please do file issues on the bug tracker or send in 
