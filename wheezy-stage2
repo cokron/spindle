@@ -346,12 +346,14 @@ dotask allow_starting_services
 dotask shutdown_qemu
 sudo -v
 # We have to copy the /boot from root partition to boot partition. Temporary 
-# hack
+# hack because the qemu kernel doesn't have msdos filesystem drivers
 dotask attach_image_to_nbd $CURIMG $NBD_DEV
 mkdir -p boot
 dotask sudo mount $BOOT_DEV boot
 mkdir -p rootfs
 dotask sudo mount $ROOT_DEV rootfs
 dotask sudo mv rootfs/boot/* boot
+dotask sudo umount $ROOT_DEV
+dotask sudo umount $BOOT_DEV
 universal_cleanup
 dotask finish_image
