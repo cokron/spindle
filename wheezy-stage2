@@ -9,6 +9,7 @@ set -ex
 
 CURIMG=stage2.$IMGFORMAT
 
+<<<<<<< HEAD
 # Make changes to /etc/skel before we start adding new users
 modify_etc_skel() {
   onvm_chroot sh -l -ex - <<\EOF
@@ -122,13 +123,10 @@ EOF1
 EOF
 }
 
-# For now we add a root password (this is a totally minimal system). It should be 
-# disabled at a later stage
 configure_users() {
   onvm_chroot sh -l -ex - <<EOF
 adduser --disabled-password --gecos "" pi
 echo "pi:raspberry" | chpasswd
-echo "root:root" | chpasswd
 EOF
 }
 
