@@ -9,7 +9,6 @@ set -ex
 
 CURIMG=stage2.$IMGFORMAT
 
-<<<<<<< HEAD
 # Make changes to /etc/skel before we start adding new users
 modify_etc_skel() {
   onvm_chroot sh -l -ex - <<\EOF
