@@ -62,10 +62,20 @@ cd /tmp
 wget https://www.dropbox.com/s/fh0fj9wynzz4ii2/node_0.10.28-1_armhf.deb 
 dpkg -i node_0.10.28-1_armhf.deb
 rm node_0.10.28-1_armhf.deb
+EOF
+}
+
+install_coffee(){
+  onvm_chroot sh -l -e - <<\EOF
 
 #install coffee-script
 npm install coffee-script@1.7.1 -g
+EOF
+}
 
+
+setup_tedsen_box_app(){
+  onvm_chroot sh -l -e - <<\EOF
 mkdir -p /box/shared
 chown -R pi /box
 chgrp -R pi /box
@@ -100,6 +110,8 @@ dotask install_packages
 dotask configure_tedsen
 dotask configure_nginx
 dotask install_node
+dotask install_coffee
+dotask setup_tedsen_box_app
 dotask save_space_using_hardlink
 dotask allow_starting_services
 dotask update_issue
