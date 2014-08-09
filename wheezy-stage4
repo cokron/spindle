@@ -110,7 +110,7 @@ dotask install_packages
 dotask configure_tedsen
 dotask configure_nginx
 dotask install_node
-dotask install_coffee
+#dotask install_coffee
 dotask setup_tedsen_box_app
 dotask save_space_using_hardlink
 dotask allow_starting_services
