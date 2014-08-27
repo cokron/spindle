@@ -7,7 +7,7 @@ set -ex
 
 . ./common
 
-CURIMG=stage4-lxde.$IMGFORMAT
+CURIMG=stage4-ted.$IMGFORMAT
 
 install_packages() {
   # we may want to break out DEBIAN_FRONTEND=noninteractive
@@ -20,13 +20,14 @@ EOF
 
 
 configure_tedsen() {
-  ssh_in_to_qemu chroot /mnt sh -l -ex - <<EOF
-cat <<EOF2 >> /etc/fstab
-/dev/mmcblk0p3  /box               ext4    defaults,noatime  0       1
-EOF2
-
-EOF
-
+# this does not work. the boot on Raspi fails, because entry is not found    
+#  ssh_in_to_qemu chroot /mnt sh -l -ex - <<EOF
+#cat <<EOF2 >> /etc/fstab
+#/dev/mmcblk0p3  /box               ext4    defaults,noatime  0       1
+#EOF2
+#
+#EOF
+#
   
 }
 
@@ -93,7 +94,7 @@ respawn
 respawn limit 250 600 
 
 script
-    cd /box/current && exec sudo -u pi NODE_ENV=production PORT=3000 /usr/local/bin/coffee /box/current/server.coffee 2>> /box/shared/production.err.log 1>> /box/shared/production.out.log
+    cd /box/current && exec sudo -u pi NODE_ENV=production PORT=3000 /usr/local/bin/coffee /box/current/server.coffee 2>> /box/shared/log/production.err.log 1>> /box/shared/log/production.out.log
 end script
 EOF2
 
